@@ -50,7 +50,6 @@ public class Calculator {
                 case '*':
                 case '/':
                 case '^':
-                case 'M':
                     System.out.print("Enter two numbers: ");
                     num1 = reader.nextDouble();
                     num2 = reader.nextDouble();
@@ -100,7 +99,7 @@ public class Calculator {
             case 'S' -> answer = Math.sin(num1);
             case 'C' -> answer = Math.cos(num1);
             case 'T' -> answer = Math.tan(num1);
-            case 'M' -> answer = Math.floorMod(num1,num2);
+
 
         }
         return answer;
