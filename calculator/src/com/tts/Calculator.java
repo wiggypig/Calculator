@@ -75,7 +75,7 @@ public class Calculator {
                     CurrencyCalc.currcalc(opOne);                   // done
                     break;
                 case 14:
-                   itemDiscount();
+                   itemDiscount();                                  // done
                     break;
                 case 15:
                     System.out.println("Thanks and good-bye");      // done
