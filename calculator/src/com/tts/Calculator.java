@@ -57,16 +57,12 @@ public class Calculator {
                     doubleTheNumOutput(opOne, num2, num3, ans);
                     break;
                 case 6:
-                    System.out.println("6");
-                    break;
                 case 7:
-                    System.out.println("7");
-                    break;
                 case 8:
-                    System.out.println("8");
-                    break;
                 case 9:
-                    System.out.println("9");
+                    num3 = LoopArrays.getInputNumber(message3);     //done
+                    ans = performOperation(opOne, num3, num2);
+                    singleNumOutput(opOne, num3, ans);
                     break;
                 case 10:
                     num3 = LoopArrays.getInputNumber(message3);     // done
