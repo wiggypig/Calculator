@@ -27,6 +27,7 @@ public class LoopArrays {
         }while (flag);
         // printing out just to check assignment is successful
 //        System.out.println(numResult);
+
         return numResult;
     }
 }

@@ -8,10 +8,11 @@ public class Calculator {
     boolean flag = true;
     char op;
     int opOne;
-    int minOption = 1;
+//    int minOption = 1;
     String message1 = "Enter the number of your selection";
     String message2 = "Please enter the first number";
     String message3 = "Please enter your number";
+//    String messageDollars = "Enter the number of whole USD";
     double num1 = 0;
     double num2 = 0;
     int num3 = 1;
@@ -69,66 +70,28 @@ public class Calculator {
                     System.out.println(factorialResult(num3));
                     break;
                 case 11:
-                    System.out.println("11");
-                    break;
                 case 12:
-                    System.out.print("Enter one number: ");
-                    num1 = reader.nextDouble();
-                    ans = performOperation(op, num1, num2);
-                    singleNumOutput(op, num1, ans);
-                    break;
                 case 13:
+                    CurrencyCalc.currcalc(opOne);                   // done
+                    break;
+                case 14:
+                   itemDiscount();
+                    break;
+                case 15:
                     System.out.println("Thanks and good-bye");      // done
                     flag = false;
                     break;
-                case 14:
-                    System.out.println("14");
                 default:
                     System.out.println("default");
                     break;
             }
- /*
-            // Choose a single or double operand
-            switch (op){
-                case 'F':
-                    System.out.print("Enter one number: ");
-                    num3 = reader.nextInt();
-                    System.out.println(factorialResult(num3));
-                    break;
-                case 'R':
-                case 'S':
-                case 'C':
-                case 'T':
-                    System.out.print("Enter one number: ");
-                    num1 = reader.nextDouble();
-                    ans = performOperation(op, num1, num2);
-                    singleNumOutput(op, num1, ans);
-                    break;
-                case 'Q':
-                    System.out.println("Thanks and good-bye");
-                    flag = false;
-                    break;
-                case '+':
-                case '-':
-                case '*':
-                case '/':
-                case '^':
-                    System.out.print("Enter two numbers: ");
-                    num1 = reader.nextDouble();
-                    num2 = reader.nextDouble();
-                    ans = performOperation(op, num1, num2);
-                    doubleTheNumOutput(op, num1, num2, ans);
-                    break;
-                default:
-                    System.out.println("Let's try that again. ");
-                    break;
-            }
 
-  */
        }while(flag);
 
 
     }
+
+
 
     // display the end user menu
     private static void displayMenu(){
@@ -143,9 +106,11 @@ public class Calculator {
         System.out.println("8: Cosine");
         System.out.println("9: Tangent");
         System.out.println("10: Factorial");
-        System.out.println("11: Currency");
-        System.out.println("12: Discount");
-        System.out.println("13: Quit Calculator");
+        System.out.println("11: USD to €");
+        System.out.println("12: € to USD");
+        System.out.println("13: £ to USD");
+        System.out.println("14: Discount");
+        System.out.println("15: Quit Calculator");
     }
 
     private static void singleNumOutput(int opOne, double num1, double ans) {
@@ -162,10 +127,10 @@ public class Calculator {
      * Handles math operations excluding factorial
      * Inputs are char, and two doubles
      * return a double
-     * @param operation
-     * @param num1
-     * @param num2
-     * @return
+     * @param operation number indicating the math operation to perform
+     * @param num1  first operand of math operation
+     * @param num2  second operand of math operation
+     * @return      answer for each math operation
      */
     private double performOperation(int operation, double num1, double num2){
         /**
@@ -180,9 +145,10 @@ public class Calculator {
             case 4 -> answer = num1 / num2;
             case 5 -> answer = Math.pow(num1, num2);
             case 6 -> answer = Math.sqrt(num1);
-            case 7 -> answer = Math.sin(num1);
-            case 8 -> answer = Math.cos(num1);
-            case 9 -> answer = Math.tan(num1);
+            case 7 -> answer = Math.sin(Math.toRadians(num1));
+            case 8 -> answer = Math.cos(Math.toRadians(num1));
+            case 9 -> answer = Math.tan(Math.toRadians(num1));
+
 
 
         }
@@ -193,8 +159,8 @@ public class Calculator {
      * performs factorial operations [Shout Out to Laura Wallace]
      * takes an int as input
      * returns BigInteger as output
-     * @param fact1
-     * @return
+     * @param fact1 int used to calculate the factorial; upper bound of the for loop
+     * @return  the BigInteger of factorial
      */
     private BigInteger factorialResult (int fact1){
         BigInteger result = BigInteger.ONE;
@@ -204,5 +170,20 @@ public class Calculator {
         return  result;
     }
 
+    static void print(String line) {
+        System.out.println(line);
+    }
+
+    private void itemDiscount() {
+        int price;
+        int discount;
+        Scanner sc = new Scanner(System.in);
+        print("Enter price of the product :");
+        price = sc.nextInt();
+        print("Enter Discount of the product :");
+        discount = sc.nextInt();
+        int finalPrice = (price * (100-discount)) / 100;
+        print("Final price is " + finalPrice);
+    }
 
 }
