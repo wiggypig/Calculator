@@ -5,15 +5,14 @@ import java.util.Scanner;
 
 public class Calculator {
     // variables - class global
+    String[] arrMenuOps = {"---Please Select A Function By Entering The Number---", "Addition", "Subtraction",
+            "Multiplication", "Division", "Power or Square", "Square Root ", "Sin", "Cosine", "Tangent",
+            "Factorial", "USD to €", "€ to USD", "£ to USD", "Discount", "Quit Calculator" };
     boolean flag = true;
-    char op;
     int opOne;
-//    int minOption = 1;
     String message1 = "Enter the number of your selection";
     String message2 = "Please enter the first number";
     String message3 = "Please enter your number";
-//    String messageDollars = "Enter the number of whole USD";
-    double num1 = 0;
     double num2 = 0;
     int num3 = 1;
     double ans;
@@ -21,8 +20,11 @@ public class Calculator {
 
     public void main(int args) {
 
+        for (int i = 1; i<arrMenuOps.length; i++) {
+            System.out.println(i + "Menu item " + arrMenuOps[i]);
+        }
         // setup scanner to get the input from the console
-        Scanner reader = new Scanner(System.in);
+        // Scanner reader = new Scanner(System.in);
 
         // like a game loop - keep running until Q is selected
         do{
@@ -40,50 +42,33 @@ public class Calculator {
              */
             opOne = LoopArrays.getInputNumber(message1);
 
-//            op = reader.next().charAt(0); // use local scanner and char for operation selection
-
             /*
              * switch statement to handle operation selection
              * input is an integer
              */
-            switch(opOne) {
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                case 5:
+            switch (opOne) {
+                case 1, 2, 3, 4, 5 -> {
                     num2 = LoopArrays.getInputNumber(message2);     // done
                     num3 = LoopArrays.getInputNumber(message3);
                     ans = performOperation(opOne, num2, num3);
-                    doubleTheNumOutput(opOne, num2, num3, ans);
-                    break;
-                case 6:
-                case 7:
-                case 8:
-                case 9:
+                    doubleTheNumOutput(arrMenuOps[opOne], ans);
+                }
+                case 6, 7, 8, 9 -> {
                     num3 = LoopArrays.getInputNumber(message3);     //done
                     ans = performOperation(opOne, num3, num2);
-                    singleNumOutput(opOne, num3, ans);
-                    break;
-                case 10:
+                    singleNumOutput(arrMenuOps[opOne], ans);
+                }
+                case 10 -> {
                     num3 = LoopArrays.getInputNumber(message3);     // done
-                    System.out.println(factorialResult(num3));
-                    break;
-                case 11:
-                case 12:
-                case 13:
-                    CurrencyCalc.currcalc(opOne);                   // done
-                    break;
-                case 14:
-                   itemDiscount();                                  // done
-                    break;
-                case 15:
+                    bigAnswer = factorialResult(num3);
+                }
+                case 11, 12, 13 -> CurrencyCalc.currcalc(opOne);    // done
+                case 14 -> itemDiscount();                          // done
+                case 15 -> {
                     System.out.println("Thanks and good-bye");      // done
                     flag = false;
-                    break;
-                default:
-                    System.out.println("default");
-                    break;
+                }
+                default -> System.out.println("default");
             }
 
        }while(flag);
@@ -94,33 +79,24 @@ public class Calculator {
 
 
     // display the end user menu
-    private static void displayMenu(){
-        System.out.println("---Please Select A Function By Entering The Number---");
-        System.out.println("1: Addition");
-        System.out.println("2: Subtraction");
-        System.out.println("3: Multiplication");
-        System.out.println("4: Division");
-        System.out.println("5: Power or Square");
-        System.out.println("6: Square Root ");
-        System.out.println("7: Sin");
-        System.out.println("8: Cosine");
-        System.out.println("9: Tangent");
-        System.out.println("10: Factorial");
-        System.out.println("11: USD to €");
-        System.out.println("12: € to USD");
-        System.out.println("13: £ to USD");
-        System.out.println("14: Discount");
-        System.out.println("15: Quit Calculator");
+    private void displayMenu(){
+        System.out.println("\n---Please Select A Function By Entering The Number---");
+        for (int i = 1; i < arrMenuOps.length; i++){
+            System.out.println(i + ": " + arrMenuOps[i]);
+        }
+
     }
 
-    private static void singleNumOutput(int opOne, double num1, double ans) {
-        System.out.print("\nThe result is given as follows:\n");
-        System.out.print(num1 + " " + " = " + ans);
+    private static void singleNumOutput(String op, double ans) {
+        System.out.print("The answer for the " + op + " operation is: = ");
+        System.out.print(ans);
+        System.out.println();
     }
 
-    private static void doubleTheNumOutput(int opOne, double num1, double num2, double ans) {
-        System.out.print("\nThe result is given as follows:\n");
-        System.out.print(num1 + " " + " " + num2 + " = " + ans);
+    private static void doubleTheNumOutput(String op, double ans) {
+        System.out.print("The answer for the " + op + " operation is: = ");
+        System.out.print(ans);
+        System.out.println();
     }
 
     /**
@@ -148,9 +124,6 @@ public class Calculator {
             case 7 -> answer = Math.sin(Math.toRadians(num1));
             case 8 -> answer = Math.cos(Math.toRadians(num1));
             case 9 -> answer = Math.tan(Math.toRadians(num1));
-
-
-
         }
         return answer;
     }
@@ -167,6 +140,8 @@ public class Calculator {
         for (int i = 2; i <= fact1; i++){
             result = result.multiply(BigInteger.valueOf(i));
         }
+        System.out.println("The answer for the factorial operation is: = ");
+        System.out.print(result);
         return  result;
     }
 

@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class CurrencyCalc {
     public static void currcalc(int exchange) {
 
+        // setup to collect enduser input
         Scanner reader = new Scanner(System.in);
 
         /*
@@ -18,7 +19,7 @@ public class CurrencyCalc {
                 double usd = reader.nextDouble();
 
                 if (usd >= 0) {
-                    System.out.println(" USD is " + usd * 0.908 + " €. ");
+                    System.out.println(" USD is " + usd * 0.83 + " €. ");
                     System.out.println();
                 } else {
                     System.out.println("Please put in positive numbers of USD");
@@ -30,7 +31,7 @@ public class CurrencyCalc {
                 double euro = reader.nextDouble();
 
                 if (euro >= 0) {
-                    System.out.println(euro + " € is " + euro * 1.101 + " USD. ");
+                    System.out.println(euro + " € is " + euro * 1.21 + " USD. ");
                 } else {
                     System.out.println("Please put in positive numbers of €.");
                 }
@@ -41,7 +42,7 @@ public class CurrencyCalc {
                 double pounds = reader.nextDouble();
 
                 if (pounds >= 0) {
-                    System.out.println(pounds + " £ is " + pounds * 1.28 + " USD ");
+                    System.out.println(pounds + " £ is " + pounds * 1.36 + " USD ");
                 } else {
                     System.out.println("Please put in positive number of £ ");
                 }
